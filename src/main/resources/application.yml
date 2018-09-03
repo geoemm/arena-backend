@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+  datasource:
+    url: ${MYSQL_URI}
+    username: ${USERNAME}
+    password: ${PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+      
+server:
+  port: 8081
