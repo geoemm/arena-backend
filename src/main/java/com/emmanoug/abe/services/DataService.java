@@ -52,4 +52,8 @@ public class DataService {
 	public List<Notifications> getNotifications() {
 		return notificationsRepo.findAll();
 	}
+	
+	public void markNotiAsRead(Integer id) {
+		notificationsRepo.markNotiAsRead(id);
+	}
 }
