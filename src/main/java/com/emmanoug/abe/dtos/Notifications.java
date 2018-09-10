@@ -19,4 +19,8 @@ public class Notifications {
     private String deviceFrom;
     
     private LocalDateTime date;
+    
+    private Boolean notificationRead;
+    
+    private String importance;
 }
