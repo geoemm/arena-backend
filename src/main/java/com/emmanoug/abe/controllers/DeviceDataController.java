@@ -24,22 +24,17 @@ public class DeviceDataController {
 	@RequestMapping(value = "/getRecordsForDevice", method = RequestMethod.GET)
 	public List<DeviceData> getRecordsForOneDevice(@RequestParam(value="deviceName", required=true) String deviceName,
 												   @RequestParam(value="dateFrom", required=false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date dateFrom,
-												   @RequestParam(value="dateTo", required=false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date dateTo,
-												   @RequestParam(value="numberOfRecords", required=false) Integer numberOfRecords) {
+												   @RequestParam(value="dateTo", required=false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date dateTo) {
 		
-		if (numberOfRecords == null && dateFrom == null && dateTo == null) {
+		if (dateFrom == null && dateTo == null) {
 			return Collections.emptyList();
 		}
 			
-		if (dateFrom == null && dateTo == null) {
-			return dataService.getRecordsNyNameAndNumOfRecords(deviceName, numberOfRecords);
-		} else {
-			return dataService.getRecordsByNameAndDate(deviceName, dateFrom, dateTo);
-		}
+		return dataService.getRecordsByNameAndDate(deviceName, dateFrom, dateTo);
 	}
 	
-	@RequestMapping(value = "/getLatestRecordsForAllDevices", method = RequestMethod.GET)
-	public List<DeviceData> getLatestRecordsForAllDevices() {
-		return dataService.getAllRecords();
+	@RequestMapping(value = "/getLatestRecords", method = RequestMethod.GET)
+	public DeviceData getLatestRecordsForAllDevices(@RequestParam(value="deviceName", required=true) String deviceName) {
+		return dataService.getLatestRecordNyName(deviceName);
 	}
 }
