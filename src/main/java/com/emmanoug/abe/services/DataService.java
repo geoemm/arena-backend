@@ -33,8 +33,9 @@ public class DataService {
 		return finalList;
 	}
 	
-	public List<DeviceData> getRecordsNyNameAndNumOfRecords(String deviceName, int numberOfRecords) {
-		return dataRepository.findByDeviceName(deviceName).subList(0, numberOfRecords);
+	public DeviceData getLatestRecordNyName(String deviceName) {
+		List<DeviceData> fullList = dataRepository.findByDeviceName(deviceName);
+		return fullList.get(fullList.size() - 1);
 	}
 	
 	public List<DeviceData> getAllRecords() {
